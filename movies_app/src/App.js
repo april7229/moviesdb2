@@ -1,23 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Router from './router.js';
+import NavBar from './components/NavBar/NavBar';
 import './App.css';
-import axios from 'axios';
-
-
 
 class App extends Component
 {
-  componentWillMount()
+  render()
   {
-    axios.get( '/api/test' ).then( response =>
-    {
-      console.log( response.data );
-    })
-  }
-  render() {
     return (
       <div className="App">
-      <h1>MY MOVIE APP</h1>
+        <NavBar />
+        {Router}
       </div>
     );
   }

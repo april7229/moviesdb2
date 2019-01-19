@@ -1,29 +1,35 @@
-const express require( 'express' );
-const cors = require( 'cors' );
+const express = require( 'express' );
 const { json } = require( 'body-parser' );
+const cors = require( 'cors' );
+const { apiURL, apiKey } = require( '../config.js' );
 const axios = require( 'axios' );
 
-
-//Initialize server
-
+// Begin Server
 const app = express();
 const port = 3001;
 
-
-//Middlewares
-
+// Middlewares
+app.use( json() );
 app.use( cors() );
-app.use( json() ); 
 
-
-//Endpoints
-app.get( '/api/test', ( req, res, next ) =>
+// Endpoints
+app.get( '/api/popular/movies', ( req, res, next ) =>
 {
-    res.status( 200 ).json( 'test successful' );
-})
+    axios.get( `${ apiURL }/movie/popular${ apiKey }` ).then( response =>
+    {
+        res.status( 200 ).json( response.data );
+    } );
+} );
 
+app.get( `/api/search/movies/:name`, ( req, res, next ) =>
+{
+    axios.get( `${ apiURL }/search/movie${ apiKey }&language=en-US&page=1&include_adult=false&query=${ req.params.name }` ).then( response =>
+    {
+        res.status( 200 ).json( response.data );
+    } );
+} );
 
 app.listen( port, () =>
 {
-    console.log( `Server is live on  port: ${ PropTypes.object.isRequired,}` );
-})
+    console.log( `Server is listening on port: ${ port }` );
+} );
