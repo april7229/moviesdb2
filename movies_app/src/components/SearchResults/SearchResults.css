@@ -1,0 +1,22 @@
+.view-container h1 {
+    margin-top: 0;
+    padding-top: 10px;
+    color: red;
+}
+
+.results-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.results-card {
+    height: 100vh;
+    width: 40%;
+    margin-bottom: 15px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.9);
+    background: #222;
+    color: #F2F2F2;
+}
